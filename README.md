@@ -1,173 +1,359 @@
-# 42 C Project Template
+*This project has been created as part of the 42 curriculum by tsito.*
 
-42 の C 課題用テンプレートです。
+# ft_printf
 
-このリポジトリは、C 課題を始めるときの最低限の土台として使うことを想定しています。Makefile と GitHub Actions の雛形を含みますが、各課題の要件を自動で満たすものではありません。
+## Description
 
-## 重要な注意
+`ft_printf` is a 42 Common Core C project whose goal is to recode a simplified
+version of the standard C `printf()` function.
 
-課題要件に `README.md` の作成や内容指定がある場合は、必ずその課題要件に従って `README.md` を書いてください。
+The project builds a static library named `libftprintf.a` containing:
 
-本テンプレートを使用した結果、レビュー、機械採点、Norminette、提出チェック、その他の評価に通らなかったとしても、テンプレート作成者は一切責任を負いません。提出前の確認責任は、使用者本人にあります。
+```c
+int	ft_printf(const char *format, ...);
+```
 
-42 の課題では、ファイル名、ディレクトリ構成、Makefile のターゲット、提出対象、使用可能な関数、禁止事項が課題ごとに異なります。テンプレートをそのまま使わず、必ず subject を読み、課題ごとに調整してください。
+The function writes formatted output to standard output and returns the number
+of characters printed. Its behavior is compared against the original libc
+`printf()` for the required conversions, but it does not implement the original
+`printf()` buffer management.
 
-## 使い方
+This project focuses on:
 
-1. このテンプレートからリポジトリを作成する
-2. 課題の subject を読む
-3. 必要なファイルとディレクトリだけを配置する
-4. `Makefile` を課題要件に合わせて書き換える
-5. ローカルでコンパイル、Norminette、動作確認を行う
-6. 提出前に subject の提出条件と差分を確認する
+- parsing a format string,
+- using variadic arguments with `stdarg.h`,
+- converting integers and pointers to textual representations,
+- writing reusable C code that follows the 42 Norm.
 
-## ディレクトリ構成
+### Mandatory Requirements
 
-このテンプレートは、特定の課題構成を強制しません。
+The library must support the following conversions:
 
-課題によっては、以下のような指定があり得ます。
+| Conversion | Behavior |
+| --- | --- |
+| `%c` | Print a single character. |
+| `%s` | Print a string, following the common C string convention. |
+| `%p` | Print a `void *` pointer in hexadecimal format. |
+| `%d` | Print a signed decimal integer. |
+| `%i` | Print a signed base-10 integer. |
+| `%u` | Print an unsigned decimal integer. |
+| `%x` | Print an unsigned hexadecimal integer using lowercase digits. |
+| `%X` | Print an unsigned hexadecimal integer using uppercase digits. |
+| `%%` | Print a percent sign. |
 
-- ルート直下に `.c` / `.h` / `Makefile` を置く
-- `src/` や `includes/` などのディレクトリを使う
-- bonus 用ファイルを別名または別ディレクトリに分ける
-- 提出してよいファイルが限定されている
+Subject constraints:
 
-ディレクトリ名やファイル配置は、必ず課題要件に合わせてください。
+- the project must be written in C,
+- the code must follow the 42 Norm,
+- the project must compile with `cc -Wall -Wextra -Werror`,
+- the Makefile must provide at least `$(NAME)`, `all`, `clean`, `fclean`, and
+  `re`,
+- the archive must be created with `ar`; `libtool` is forbidden,
+- `libftprintf.a` must be created at the repository root,
+- the public header must be named `ft_printf.h`,
+- allowed external functions are `malloc`, `free`, `write`, `va_start`,
+  `va_arg`, `va_copy`, and `va_end`,
+- libft is authorized if it is included in a `libft/` directory and compiled by
+  this project's Makefile.
 
-## Makefile
+### Bonus Requirements
 
-`Makefile` は雛形です。課題ごとに必ず見直してください。
+The bonus part is optional and is evaluated only if the mandatory part is
+perfect.
 
-確認する項目の例:
+The subject lists support for:
 
-- `NAME` が課題で指定された成果物名になっているか
-- ライブラリ課題なら `.a` を作る構成になっているか
-- 実行ファイル課題なら実行ファイルを作る構成になっているか
-- `SRCS` に必要なソースファイルがすべて含まれているか
-- `INCDIR` がヘッダーファイルの配置と合っているか
-- `all`, `clean`, `fclean`, `re` など、課題で求められるターゲットがあるか
-- bonus が必要な場合、`bonus` ターゲットの要件を満たしているか
+- any combination of the `-`, `0`, `.`, and minimum field width options under
+  all conversions,
+- all of the flags `#`, space, and `+`.
 
-テンプレートの Makefile は、すべての課題にそのまま使えるものではありません。
+Bonus files should follow the subject convention, usually by using
+`_bonus.c` and `_bonus.h` filenames.
 
-## GitHub Actions
+## Instructions
 
-このテンプレートには、簡単な GitHub Actions のフローが含まれています。
+### Build
 
-- `format-c.yml`
-  - `c_formatter_42` をインストールします
-  - リポジトリ内の `.c` と `.h` をフォーマットします
-  - 差分があれば bot が commit / push します
-- `norminette.yml`
-  - `main` への push と pull request で実行されます
-  - 先にフォーマット用 workflow を呼び出します
-  - その後、`norminette` を実行します
-- `notify-discord.yml`
-  - `DISCORD_WEBHOOK_URL` secret が設定されている場合、結果を Discord に通知します
+From the repository root, run:
 
-Actions は補助ツールです。ローカル環境、校舎環境、提出システムの結果と完全に一致する保証はありません。
+```sh
+make
+```
 
-## 提出前チェック
+This should produce:
 
-提出前に少なくとも以下を確認してください。
+```text
+libftprintf.a
+```
 
-- subject の提出ファイル一覧と一致している
-- 不要なファイルやテストコードを提出対象に含めていない
-- `make`, `make clean`, `make fclean`, `make re` が期待通りに動く
-- `-Wall -Wextra -Werror` でコンパイルできる
-- Norminette に通る
-- メモリリーク、未初期化値、未定義動作がない
-- 許可されていない関数を使っていない
-- bonus の扱いが課題要件と一致している
+### Clean
 
-## この README について
+Remove object files:
 
-この README はテンプレートの説明用です。課題で README の内容が指定されている場合は、この内容を残すのではなく、課題要件に合わせて書き直してください。
+```sh
+make clean
+```
+
+Remove object files and the static library:
+
+```sh
+make fclean
+```
+
+Rebuild from scratch:
+
+```sh
+make re
+```
+
+### Use in another C file
+
+Include the header:
+
+```c
+#include "ft_printf.h"
+```
+
+Example:
+
+```c
+#include "ft_printf.h"
+
+int	main(void)
+{
+	ft_printf("answer: %d, hex: %x, string: %s\n", 42, 42, "hello");
+	return (0);
+}
+```
+
+Compile with the library:
+
+```sh
+cc -Wall -Wextra -Werror main.c libftprintf.a
+```
+
+## Algorithm and Data Structures
+
+The chosen algorithm is a single left-to-right scan of the format string.
+
+For each character:
+
+1. If the character is not `%`, write it directly to standard output and
+   increment the printed character count.
+2. If the character is `%`, inspect the next character as a conversion
+   specifier.
+3. Fetch the next variadic argument with `va_arg` using the type required by
+   the conversion.
+4. Dispatch the value to a small conversion-specific printing function.
+5. Add the number of characters written by that function to the total count.
+
+This algorithm is appropriate because the mandatory subject does not require
+full libc-style buffering, positional parameters, locale handling, or complex
+format grammar. A linear parser keeps the behavior predictable, makes error
+handling simpler, and avoids unnecessary memory allocation.
+
+The main data structures are deliberately simple:
+
+- `va_list` stores the current position in the variadic argument list.
+- The input `const char *format` acts as the parsing stream.
+- Small helper functions handle each conversion independently.
+- Integer conversion helpers use recursive printing or a small fixed local
+  buffer to emit digits in the correct order.
+- Hexadecimal conversion uses constant digit strings:
+  `"0123456789abcdef"` and `"0123456789ABCDEF"`.
+
+This design is justified by the project constraints. It keeps the mandatory
+implementation compact, avoids dynamic data structures for conversions that can
+be printed directly, and makes it easy to extend the parser later for bonus
+flags, width, and precision.
+
+## Resources
+
+Classic references used for this topic:
+
+- `man 3 printf`
+- `man 3 stdarg`
+- `man 2 write`
+- The C standard library documentation for `printf` formatting rules
+- 42 ft_printf subject: `Downloads/en.subject.pdf`
+
+AI usage:
+
+- AI was used to draft and organize this README according to the subject
+  requirements.
+- AI was used to summarize the project goal, mandatory conversions, build
+  instructions, and the algorithm/data-structure explanation.
+- AI was not used here to implement, test, or validate the C source code.
 
 ---
 
-# 42 C Project Template
+## Description
 
-This is a template repository for 42 C projects.
+`ft_printf` は、標準 C ライブラリの `printf()` 関数を簡易的に再実装する
+42 Common Core の C 課題である。
 
-It is intended to provide a minimal starting point for C assignments. It includes a Makefile template and GitHub Actions workflows, but it does not automatically satisfy the requirements of every project.
+このプロジェクトでは、次の関数を含む静的ライブラリ `libftprintf.a` を作成する。
 
-## Important Notes
+```c
+int	ft_printf(const char *format, ...);
+```
 
-If the assignment requires a `README.md` file or specifies what must be written in it, you must write `README.md` according to the assignment requirements.
+この関数は、整形した文字列を標準出力へ書き込み、出力した文字数を返す。
+必須変換については libc の `printf()` と比較されるが、元の `printf()` が持つ
+バッファ管理までは実装しない。
 
-The template author assumes no responsibility if using this template causes you to fail a review, automated grading, Norminette, submission check, or any other evaluation. You are responsible for verifying your own submission before turning it in.
+この課題では主に次の内容を学ぶ。
 
-In 42 projects, file names, directory structure, Makefile targets, submitted files, allowed functions, and forbidden items differ by assignment. Do not use this template as-is. Always read the subject and adjust the project accordingly.
+- フォーマット文字列の解析
+- `stdarg.h` を使った可変長引数の扱い
+- 整数やポインタの文字列表現への変換
+- 42 Norm に従った再利用しやすい C コードの設計
 
-## Usage
+### 必須要件
 
-1. Create a repository from this template
-2. Read the assignment subject
-3. Place only the required files and directories
-4. Rewrite `Makefile` to match the assignment requirements
-5. Run compilation, Norminette, and behavior checks locally
-6. Before submission, verify the subject requirements and your final diff
+ライブラリは次の変換指定子に対応する必要がある。
 
-## Directory Structure
+| 変換 | 動作 |
+| --- | --- |
+| `%c` | 1 文字を出力する。 |
+| `%s` | C の一般的な文字列として文字列を出力する。 |
+| `%p` | `void *` ポインタを 16 進数形式で出力する。 |
+| `%d` | 符号付き 10 進整数を出力する。 |
+| `%i` | 符号付き 10 進整数を出力する。 |
+| `%u` | 符号なし 10 進整数を出力する。 |
+| `%x` | 符号なし整数を小文字の 16 進数で出力する。 |
+| `%X` | 符号なし整数を大文字の 16 進数で出力する。 |
+| `%%` | パーセント記号を出力する。 |
 
-This template does not enforce a specific project structure.
+subject 上の制約は次のとおりである。
 
-Depending on the assignment, you may be required to:
+- プロジェクトは C で書くこと
+- コードは 42 Norm に従うこと
+- `cc -Wall -Wextra -Werror` でコンパイルできること
+- Makefile には少なくとも `$(NAME)`, `all`, `clean`, `fclean`, `re` を含めること
+- 静的ライブラリは `ar` で作成すること。`libtool` は禁止
+- `libftprintf.a` をリポジトリのルートに作成すること
+- 公開ヘッダーファイル名は `ft_printf.h` にすること
+- 使用可能な外部関数は `malloc`, `free`, `write`, `va_start`, `va_arg`,
+  `va_copy`, `va_end`
+- libft は、`libft/` ディレクトリにソースと Makefile を置き、このプロジェクトの
+  Makefile からコンパイルする場合に使用可能
 
-- Place `.c` / `.h` / `Makefile` directly at the repository root
-- Use directories such as `src/` or `includes/`
-- Separate bonus files by file name or directory
-- Submit only a limited set of files
+### ボーナス要件
 
-Always follow the assignment requirements for directory names and file placement.
+ボーナスは任意である。必須部分が完全に正しく実装されている場合のみ評価される。
 
-## Makefile
+subject では次の対応がボーナスとして挙げられている。
 
-`Makefile` is only a template. Review and update it for each assignment.
+- すべての変換における `-`, `0`, `.`, 最小フィールド幅の任意の組み合わせ
+- `#`, スペース, `+` の各フラグ
 
-Examples of items to check:
+ボーナス用ファイルは、通常 subject の慣例に従って `_bonus.c` や `_bonus.h` を
+使う。
 
-- Whether `NAME` matches the required output name
-- Whether library projects build a `.a` archive
-- Whether executable projects build the required executable
-- Whether `SRCS` includes all required source files
-- Whether `INCDIR` matches the header file location
-- Whether required targets such as `all`, `clean`, `fclean`, and `re` are present
-- Whether the `bonus` target satisfies the assignment requirements, if bonus is required
+## INstruction
 
-The template Makefile is not suitable for every assignment as-is.
+### ビルド
 
-## GitHub Actions
+リポジトリのルートで次を実行する。
 
-This template includes simple GitHub Actions workflows.
+```sh
+make
+```
 
-- `format-c.yml`
-  - Installs `c_formatter_42`
-  - Formats `.c` and `.h` files in the repository
-  - Commits and pushes changes as a bot if formatting creates a diff
-- `norminette.yml`
-  - Runs on push and pull request to `main`
-  - Calls the formatting workflow first
-  - Runs `norminette` afterward
-- `notify-discord.yml`
-  - Sends the result to Discord if the `DISCORD_WEBHOOK_URL` secret is configured
+成功すると次のファイルが作成される。
 
-Actions are helper tools only. Their results are not guaranteed to match your local environment, campus environment, or the official submission system.
+```text
+libftprintf.a
+```
 
-## Pre-Submission Checklist
+### クリーン
 
-Before submitting, check at least the following:
+オブジェクトファイルを削除する。
 
-- The submitted files match the subject
-- Unnecessary files and test code are not included in the submission
-- `make`, `make clean`, `make fclean`, and `make re` work as expected
-- The project compiles with `-Wall -Wextra -Werror`
-- Norminette passes
-- There are no memory leaks, uninitialized values, or undefined behavior
-- No forbidden functions are used
-- Bonus handling matches the assignment requirements
+```sh
+make clean
+```
 
-## About This README
+オブジェクトファイルと静的ライブラリを削除する。
 
-This README explains the template itself. If an assignment specifies README requirements, do not keep this content as-is. Rewrite it according to the assignment requirements.
+```sh
+make fclean
+```
+
+最初からビルドし直す。
+
+```sh
+make re
+```
+
+### 他の C ファイルから使う例
+
+ヘッダーを include する。
+
+```c
+#include "ft_printf.h"
+```
+
+使用例:
+
+```c
+#include "ft_printf.h"
+
+int	main(void)
+{
+	ft_printf("answer: %d, hex: %x, string: %s\n", 42, 42, "hello");
+	return (0);
+}
+```
+
+ライブラリと一緒にコンパイルする。
+
+```sh
+cc -Wall -Wextra -Werror main.c libftprintf.a
+```
+
+### Algorithm and Data Structures
+
+採用するアルゴリズムは、フォーマット文字列を左から右へ 1 回走査する方式である。
+
+各文字に対して次の処理を行う。
+
+1. 文字が `%` でなければ、そのまま標準出力へ書き込み、出力文字数を増やす。
+2. 文字が `%` であれば、次の文字を変換指定子として確認する。
+3. 変換指定子に応じた型で `va_arg` を使い、次の可変長引数を取り出す。
+4. 値を変換指定子ごとの小さな出力関数へ渡す。
+5. その関数が出力した文字数を合計に加える。
+
+この方式を選ぶ理由は、必須課題では libc の完全なバッファ管理、位置指定引数、
+ロケール処理、複雑なフォーマット文法を扱う必要がないためである。線形に解析する
+ことで挙動が追いやすくなり、エラー処理も単純になり、不要なメモリ確保も避けられる。
+
+主なデータ構造は意図的に単純にする。
+
+- `va_list` は可変長引数リストの現在位置を保持する。
+- 入力の `const char *format` は解析対象のストリームとして扱う。
+- 変換指定子ごとに小さなヘルパー関数を用意する。
+- 整数変換では、再帰出力または固定長のローカルバッファを使って正しい順序で数字を出力する。
+- 16 進数変換では `"0123456789abcdef"` と `"0123456789ABCDEF"` の定数文字列を使う。
+
+この設計は、課題の制約に合っている。必須実装を小さく保てるうえ、直接出力できる
+変換に対して不要な動的データ構造を使わずに済む。また、後からボーナスのフラグ、
+幅、精度を追加しやすい構成になる。
+
+### 参考資料
+
+このトピックに関する基本的な参考資料:
+
+- `man 3 printf`
+- `man 3 stdarg`
+- `man 2 write`
+- `printf` のフォーマット規則に関する C 標準ライブラリのドキュメント
+- 42 ft_printf subject: `Downloads/en.subject.pdf`
+
+AI の使用について:
+
+- AI は、この README を subject 要件に沿って作成、整理するために使用した。
+- AI は、プロジェクトの目的、必須変換、ビルド手順、アルゴリズムとデータ構造の説明を
+  要約するために使用した。
+- この README 作成時点では、C ソースコードの実装、テスト、検証には AI を使用していない。
