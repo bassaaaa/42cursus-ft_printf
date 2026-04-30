@@ -251,7 +251,7 @@ subject では次の対応がボーナスとして挙げられている。
 ボーナス用ファイルは、通常 subject の慣例に従って `_bonus.c` や `_bonus.h` を
 使う。
 
-## INstruction
+## Instruction
 
 ### ビルド
 
