@@ -6,7 +6,7 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:47:04 by tsito             #+#    #+#             */
-/*   Updated: 2026/04/29 16:58:43 by tsito            ###   ########.fr       */
+/*   Updated: 2026/04/30 21:31:45 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdarg.h>
 #include "libft/libft.h"
 
+void	ft_putuint_fd(unsigned int n, int fd);
 int ft_printf(const char *format, ...);
 
 #endif
