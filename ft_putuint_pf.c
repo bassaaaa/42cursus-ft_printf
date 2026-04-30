@@ -26,5 +26,5 @@ int	ft_putuint_pf(unsigned int n)
 		n /= 10;
 	}
 	write(1, pos, &buf[10] - pos);
-    return &buf[10] - pos;
+	return (&buf[10] - pos);
 }

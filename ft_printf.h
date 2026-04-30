@@ -16,7 +16,7 @@
 # include "libft/libft.h"
 # include <stdarg.h>
 
-int ft_putchar_pf(char c);
+int	ft_putchar_pf(char c);
 int	ft_putstr_pf(char *s);
 int	ft_putptr_pf(unsigned long p);
 int	ft_putuint_pf(unsigned int n);
