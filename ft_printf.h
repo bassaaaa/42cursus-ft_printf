@@ -6,17 +6,22 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:47:04 by tsito             #+#    #+#             */
-/*   Updated: 2026/04/30 21:31:45 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/01 00:20:09 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include <stdarg.h>
-#include "libft/libft.h"
+# include "libft/libft.h"
+# include <stdarg.h>
 
-void	ft_putuint_fd(unsigned int n, int fd);
-int ft_printf(const char *format, ...);
+int ft_putchar_pf(char c);
+int	ft_putstr_pf(char *s);
+int	ft_putptr_pf(unsigned long p);
+int	ft_putuint_pf(unsigned int n);
+int	ft_putnbr_pf(int n);
+int	ft_puthex_pf(unsigned int n, const char *base);
+int	ft_printf(const char *format, ...);
 
 #endif
