@@ -147,12 +147,7 @@ For each character:
 4. Dispatch the value to a small conversion-specific printing function.
 5. Add the number of characters written by that function to the total count.
 
-This algorithm is appropriate because the mandatory subject does not require
-full libc-style buffering, positional parameters, locale handling, or complex
-format grammar. A linear parser keeps the behavior predictable, makes error
-handling simpler, and avoids unnecessary memory allocation.
-
-The main data structures are deliberately simple:
+The main data structures are as follows:
 
 - `va_list` stores the current position in the variadic argument list.
 - The input `const char *format` acts as the parsing stream.
@@ -162,28 +157,22 @@ The main data structures are deliberately simple:
 - Hexadecimal conversion uses constant digit strings:
   `"0123456789abcdef"` and `"0123456789ABCDEF"`.
 
-This design is justified by the project constraints. It keeps the mandatory
-implementation compact, avoids dynamic data structures for conversions that can
-be printed directly, and makes it easy to extend the parser later for bonus
-flags, width, and precision.
-
 ## Resources
 
 Classic references used for this topic:
 
-- `man 3 printf`
-- `man 3 stdarg`
-- `man 2 write`
+- `man printf`
+- `man stdarg`
 - The C standard library documentation for `printf` formatting rules
-- 42 ft_printf subject: `Downloads/en.subject.pdf`
+- [Tripouille/printfTester](https://github.com/Tripouille/printfTester) - test tool
 
 AI usage:
 
-- AI was used to draft and organize this README according to the subject
-  requirements.
-- AI was used to summarize the project goal, mandatory conversions, build
-  instructions, and the algorithm/data-structure explanation.
-- AI was not used here to implement, test, or validate the C source code.
+| Purpose | Target part |
+| --- | --- |
+| Japanese translation of requirements | Used to accurately understand the subject requirements |
+| README.md proofreading | Used to revise wording and phrasing |
+| English translation of README.md | Used to produce an accurate English translation of the README |
 
 ---
 
@@ -325,11 +314,7 @@ cc -Wall -Wextra -Werror main.c libftprintf.a
 4. 値を変換指定子ごとの小さな出力関数へ渡す。
 5. その関数が出力した文字数を合計に加える。
 
-この方式を選ぶ理由は、必須課題では libc の完全なバッファ管理、位置指定引数、
-ロケール処理、複雑なフォーマット文法を扱う必要がないためである。線形に解析する
-ことで挙動が追いやすくなり、エラー処理も単純になり、不要なメモリ確保も避けられる。
-
-主なデータ構造は意図的に単純にする。
+主なデータ構造は以下のとおり。
 
 - `va_list` は可変長引数リストの現在位置を保持する。
 - 入力の `const char *format` は解析対象のストリームとして扱う。
@@ -337,23 +322,19 @@ cc -Wall -Wextra -Werror main.c libftprintf.a
 - 整数変換では、再帰出力または固定長のローカルバッファを使って正しい順序で数字を出力する。
 - 16 進数変換では `"0123456789abcdef"` と `"0123456789ABCDEF"` の定数文字列を使う。
 
-この設計は、課題の制約に合っている。必須実装を小さく保てるうえ、直接出力できる
-変換に対して不要な動的データ構造を使わずに済む。また、後からボーナスのフラグ、
-幅、精度を追加しやすい構成になる。
-
 ### 参考資料
 
 このトピックに関する基本的な参考資料:
 
-- `man 3 printf`
-- `man 3 stdarg`
-- `man 2 write`
+- `man printf`
+- `man stdarg`
 - `printf` のフォーマット規則に関する C 標準ライブラリのドキュメント
-- 42 ft_printf subject: `Downloads/en.subject.pdf`
+- [Tripouille/printfTester](https://github.com/Tripouille/printfTester) - テストツール
 
 AI の使用について:
 
-- AI は、この README を subject 要件に沿って作成、整理するために使用した。
-- AI は、プロジェクトの目的、必須変換、ビルド手順、アルゴリズムとデータ構造の説明を
-  要約するために使用した。
-- この README 作成時点では、C ソースコードの実装、テスト、検証には AI を使用していない。
+| 用途 | 対象部分 |
+|------|---------|
+|要件の日本語訳|課題要件の正確な把握のため、翻訳に利用|
+|README.mdの添削|文言や言い回しの修正|
+|README.mdの英訳|READMEの正確な英訳に利用|
