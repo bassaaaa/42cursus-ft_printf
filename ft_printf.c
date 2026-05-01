@@ -6,11 +6,35 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 16:59:12 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/01 00:24:31 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/01 12:52:13 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static int	print_format(va_list args, char format)
+{
+	int	len;
+
+	len = 0;
+	if (format == 'c')
+		len += ft_putchar_pf(va_arg(args, int));
+	else if (format == 's')
+		len += ft_putstr_pf(va_arg(args, char *));
+	else if (format == 'p')
+		len += ft_putptr_pf(va_arg(args, unsigned long));
+	else if (format == 'd' || format == 'i')
+		len += ft_putnbr_pf(va_arg(args, int));
+	else if (format == 'u')
+		len += ft_putuint_pf(va_arg(args, unsigned int));
+	else if (format == 'x')
+		len += ft_puthex_pf(va_arg(args, unsigned int), "0123456789abcdef");
+	else if (format == 'X')
+		len += ft_puthex_pf(va_arg(args, unsigned int), "0123456789ABCDEF");
+	else if (format == '%')
+		len += ft_putchar_pf('%');
+	return (len);
+}
 
 int	ft_printf(const char *format, ...)
 {
@@ -25,24 +49,7 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == 'c')
-				len += ft_putchar_pf(va_arg(args, int));
-			else if (format[i + 1] == 's')
-				len += ft_putstr_pf(va_arg(args, char *));
-			else if (format[i + 1] == 'p')
-				len += ft_putptr_pf(va_arg(args, unsigned long));
-			else if (format[i + 1] == 'd' || format[i + 1] == 'i')
-				len += ft_putnbr_pf(va_arg(args, int));
-			else if (format[i + 1] == 'u')
-				len += ft_putuint_pf(va_arg(args, unsigned int));
-			else if (format[i + 1] == 'x')
-				len += ft_puthex_pf(va_arg(args, unsigned int),
-						"0123456789abcdef");
-			else if (format[i + 1] == 'X')
-				len += ft_puthex_pf(va_arg(args, unsigned int),
-						"0123456789ABCDEF");
-			else if (format[i + 1] == '%')
-				len += ft_putchar_pf('%');
+			len += print_format(args, format[i + 1]);
 			i += 2;
 		}
 		else
@@ -52,27 +59,27 @@ int	ft_printf(const char *format, ...)
 	return (len);
 }
 
-#include <stdio.h>
-
-int	main(void)
-{
-	int	len;
-
-	len = ft_printf("char: %c  ", 'A');
-	printf("len: %d\n", len);
-	len = ft_printf("str: %s  ", "hello");
-	printf("len: %d\n", len);
-	len = printf("ptr: %p  ", "hello");
-	printf("len: %d\n", len);
-	len = ft_printf("ptr: %p  ", "hello");
-	printf("len: %d\n", len);
-	len = ft_printf("int: %d %i  ", -42, 42);
-	printf("len: %d\n", len);
-	len = ft_printf("uint: %u  ", 4294967295U);
-	printf("len: %d\n", len);
-	len = ft_printf("hex: %x %X  ", 3735928559U, 3735928559U);
-	printf("len: %d\n", len);
-	len = ft_printf("percent: %%  ");
-	printf("len: %d\n", len);
-	return (0);
-}
+// #include <stdio.h>
+//
+// int	main(void)
+// {
+// 	int	len;
+//
+// 	len = ft_printf("char: %c  ", 'A');
+// 	printf("len: %d\n", len);
+// 	len = ft_printf("str: %s  ", "hello");
+// 	printf("len: %d\n", len);
+// 	len = printf("ptr: %p  ", "hello");
+// 	printf("len: %d\n", len);
+// 	len = ft_printf("ptr: %p  ", "hello");
+// 	printf("len: %d\n", len);
+// 	len = ft_printf("int: %d %i  ", -42, 42);
+// 	printf("len: %d\n", len);
+// 	len = ft_printf("uint: %u  ", 4294967295U);
+// 	printf("len: %d\n", len);
+// 	len = ft_printf("hex: %x %X  ", 3735928559U, 3735928559U);
+// 	printf("len: %d\n", len);
+// 	len = ft_printf("percent: %%  ");
+// 	printf("len: %d\n", len);
+// 	return (0);
+// }
