@@ -6,16 +6,14 @@
 #    By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/27 19:00:55 by tsito             #+#    #+#              #
-#    Updated: 2026/05/01 13:01:30 by tsito            ###   ########.fr        #
+#    Updated: 2026/05/01 13:39:05 by tsito            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= libftprintf
 NAME_A		:= $(NAME).a
 
-CC			:= cc
 CFLAGS		:= -Wall -Wextra -Werror
-AR			:= ar
 ARFLAGS		:= rcs
 
 SRCS		:= ft_printf.c \
@@ -29,7 +27,6 @@ LIBFT		:= libft
 INCDIR		:= .
 OUTDIR		:= .out
 OBJS 		:= $(addprefix $(OUTDIR)/, $(SRCS:.c=.o))
-TEST_BIN	:= $(OUTDIR)/test
 
 all: $(NAME_A)
 
@@ -41,10 +38,6 @@ $(NAME_A): $(OBJS)
 $(OUTDIR)/%.o: %.c
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -I$(INCDIR) -c $< -o $@
-
-test: $(NAME_A)
-	$(CC) $(CFLAGS) -DTEST -I$(INCDIR) $(SRCS) $(NAME_A) -o $(TEST_BIN)
-	./$(TEST_BIN)
 
 clean:
 	@$(MAKE) -C $(LIBFT) clean
