@@ -6,7 +6,7 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 00:59:05 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/01 12:59:50 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/01 15:33:04 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 
 int	ft_print_str(char *s)
 {
-	ft_putstr_fd(s, 1);
-	return (ft_strlen(s));
+	if (!s) {
+        write(1, "(null)", 6);
+		return (6);
+    }
+	else
+	{
+		ft_putstr_fd(s, 1);
+		return (ft_strlen(s));
+	}
 }
