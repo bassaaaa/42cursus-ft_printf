@@ -1,19 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_pf.c                                    :+:      :+:    :+:   */
+/*   ft_print_nbr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/01 00:59:37 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/01 00:59:48 by tsito            ###   ########.fr       */
+/*   Created: 2026/05/01 00:57:32 by tsito             #+#    #+#             */
+/*   Updated: 2026/05/01 12:59:34 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 
-int	ft_putchar_pf(char c)
+int	ft_print_nbr(int n)
 {
-	ft_putchar_fd(c, 1);
-	return (1);
+	unsigned int	num;
+	char			buf[11];
+	char			*pos;
+
+	if (n < 0)
+		num = -(unsigned int)n;
+	else
+		num = (unsigned int)n;
+	pos = &buf[11];
+	if (num == 0)
+		*(--pos) = '0';
+	while (num)
+	{
+		*(--pos) = num % 10 + '0';
+		num /= 10;
+	}
+	if (n < 0)
+		*(--pos) = '-';
+	write(1, pos, &buf[11] - pos);
+	return (&buf[11] - pos);
 }

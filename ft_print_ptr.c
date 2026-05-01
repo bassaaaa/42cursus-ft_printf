@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_pf.c                                     :+:      :+:    :+:   */
+/*   ft_print_ptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/01 00:57:32 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/01 00:57:45 by tsito            ###   ########.fr       */
+/*   Created: 2026/05/01 00:58:13 by tsito             #+#    #+#             */
+/*   Updated: 2026/05/01 12:59:41 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 
-int	ft_putnbr_pf(int n)
+int	ft_print_ptr(unsigned long p)
 {
-	unsigned int	num;
-	char			buf[11];
-	char			*pos;
+	char	buf[16];
+	char	*pos;
 
-	if (n < 0)
-		num = -(unsigned int)n;
-	else
-		num = (unsigned int)n;
-	pos = &buf[11];
-	if (num == 0)
-		*(--pos) = '0';
-	while (num)
+	pos = &buf[16];
+	while (p)
 	{
-		*(--pos) = num % 10 + '0';
-		num /= 10;
+		*(--pos) = "0123456789ABCDEF"[p % 16];
+		p /= 16;
 	}
-	if (n < 0)
-		*(--pos) = '-';
-	write(1, pos, &buf[11] - pos);
-	return (&buf[11] - pos);
+	write(1, "0x", 2);
+	write(1, pos, &buf[16] - pos);
+	return (&buf[16] - pos + 2);
 }

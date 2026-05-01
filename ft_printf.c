@@ -6,7 +6,7 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 16:59:12 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/01 12:52:13 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/01 13:01:47 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ static int	print_format(va_list args, char format)
 
 	len = 0;
 	if (format == 'c')
-		len += ft_putchar_pf(va_arg(args, int));
+		len += ft_print_char(va_arg(args, int));
 	else if (format == 's')
-		len += ft_putstr_pf(va_arg(args, char *));
+		len += ft_print_str(va_arg(args, char *));
 	else if (format == 'p')
-		len += ft_putptr_pf(va_arg(args, unsigned long));
+		len += ft_print_ptr(va_arg(args, unsigned long));
 	else if (format == 'd' || format == 'i')
-		len += ft_putnbr_pf(va_arg(args, int));
+		len += ft_print_nbr(va_arg(args, int));
 	else if (format == 'u')
-		len += ft_putuint_pf(va_arg(args, unsigned int));
+		len += ft_print_uint(va_arg(args, unsigned int));
 	else if (format == 'x')
-		len += ft_puthex_pf(va_arg(args, unsigned int), "0123456789abcdef");
+		len += ft_print_hex(va_arg(args, unsigned int), "0123456789abcdef");
 	else if (format == 'X')
-		len += ft_puthex_pf(va_arg(args, unsigned int), "0123456789ABCDEF");
+		len += ft_print_hex(va_arg(args, unsigned int), "0123456789ABCDEF");
 	else if (format == '%')
-		len += ft_putchar_pf('%');
+		len += ft_print_char('%');
 	return (len);
 }
 
@@ -53,33 +53,33 @@ int	ft_printf(const char *format, ...)
 			i += 2;
 		}
 		else
-			len += ft_putchar_pf(format[i++]);
+			len += ft_print_char(format[i++]);
 	}
 	va_end(args);
 	return (len);
 }
 
-// #include <stdio.h>
-//
-// int	main(void)
-// {
-// 	int	len;
-//
-// 	len = ft_printf("char: %c  ", 'A');
-// 	printf("len: %d\n", len);
-// 	len = ft_printf("str: %s  ", "hello");
-// 	printf("len: %d\n", len);
-// 	len = printf("ptr: %p  ", "hello");
-// 	printf("len: %d\n", len);
-// 	len = ft_printf("ptr: %p  ", "hello");
-// 	printf("len: %d\n", len);
-// 	len = ft_printf("int: %d %i  ", -42, 42);
-// 	printf("len: %d\n", len);
-// 	len = ft_printf("uint: %u  ", 4294967295U);
-// 	printf("len: %d\n", len);
-// 	len = ft_printf("hex: %x %X  ", 3735928559U, 3735928559U);
-// 	printf("len: %d\n", len);
-// 	len = ft_printf("percent: %%  ");
-// 	printf("len: %d\n", len);
-// 	return (0);
-// }
+#include <stdio.h>
+
+int	main(void)
+{
+	int	len;
+
+	len = ft_printf("char: %c  ", 'A');
+	printf("len: %d\n", len);
+	len = ft_printf("str: %s  ", "hello");
+	printf("len: %d\n", len);
+	len = printf("ptr: %p  ", "hello");
+	printf("len: %d\n", len);
+	len = ft_printf("ptr: %p  ", "hello");
+	printf("len: %d\n", len);
+	len = ft_printf("int: %d %i  ", -42, 42);
+	printf("len: %d\n", len);
+	len = ft_printf("uint: %u  ", 4294967295U);
+	printf("len: %d\n", len);
+	len = ft_printf("hex: %x %X  ", 3735928559U, 3735928559U);
+	printf("len: %d\n", len);
+	len = ft_printf("percent: %%  ");
+	printf("len: %d\n", len);
+	return (0);
+}

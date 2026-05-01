@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthex_pf.c                                     :+:      :+:    :+:   */
+/*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/01 00:56:25 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/01 00:56:42 by tsito            ###   ########.fr       */
+/*   Created: 2026/05/01 00:59:37 by tsito             #+#    #+#             */
+/*   Updated: 2026/05/01 12:59:13 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 
-int	ft_puthex_pf(unsigned int n, const char *base)
+int	ft_print_char(char c)
 {
-	char	buf[8];
-	char	*pos;
-
-	pos = &buf[8];
-	if (n == 0)
-		*(--pos) = '0';
-	while (n)
-	{
-		*(--pos) = base[n % 16];
-		n /= 16;
-	}
-	write(1, pos, &buf[8] - pos);
-	return (&buf[8] - pos);
+	ft_putchar_fd(c, 1);
+	return (1);
 }

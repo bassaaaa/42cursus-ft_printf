@@ -6,7 +6,7 @@
 #    By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/27 19:00:55 by tsito             #+#    #+#              #
-#    Updated: 2026/05/01 01:03:36 by tsito            ###   ########.fr        #
+#    Updated: 2026/05/01 13:01:30 by tsito            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,12 @@ AR			:= ar
 ARFLAGS		:= rcs
 
 SRCS		:= ft_printf.c \
-			   ft_putchar_pf.c \
-			   ft_putstr_pf.c \
-			   ft_putptr_pf.c \
-			   ft_putnbr_pf.c \
-			   ft_putuint_pf.c \
-			   ft_puthex_pf.c
+			   ft_print_char.c \
+			   ft_print_str.c \
+			   ft_print_ptr.c \
+			   ft_print_nbr.c \
+			   ft_print_uint.c \
+			   ft_print_hex.c
 LIBFT		:= libft
 INCDIR		:= .
 OUTDIR		:= .out

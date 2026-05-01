@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putptr_pf.c                                     :+:      :+:    :+:   */
+/*   ft_print_uint.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/01 00:58:13 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/01 00:58:31 by tsito            ###   ########.fr       */
+/*   Created: 2026/04/30 21:25:48 by tsito             #+#    #+#             */
+/*   Updated: 2026/05/01 12:59:58 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 
-int	ft_putptr_pf(unsigned long p)
+int	ft_print_uint(unsigned int n)
 {
-	char	buf[16];
+	char	buf[10];
 	char	*pos;
 
-	pos = &buf[16];
-	while (p)
+	pos = &buf[10];
+	if (n == 0)
+		*(--pos) = '0';
+	while (n)
 	{
-		*(--pos) = "0123456789ABCDEF"[p % 16];
-		p /= 16;
+		*(--pos) = n % 10 + '0';
+		n /= 10;
 	}
-	write(1, "0x", 2);
-	write(1, pos, &buf[16] - pos);
-	return (&buf[16] - pos + 2);
+	write(1, pos, &buf[10] - pos);
+	return (&buf[10] - pos);
 }
