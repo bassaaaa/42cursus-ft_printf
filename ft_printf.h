@@ -6,7 +6,7 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:47:04 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/01 12:58:59 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/01 15:03:39 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 int	ft_print_char(char c);
 int	ft_print_str(char *s);
-int	ft_print_ptr(unsigned long p);
+int	ft_print_ptr(void *p);
 int	ft_print_uint(unsigned int n);
 int	ft_print_nbr(int n);
 int	ft_print_hex(unsigned int n, const char *base);
