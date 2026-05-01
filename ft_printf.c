@@ -6,7 +6,7 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 16:59:12 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/01 13:01:47 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/01 13:03:39 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,27 +59,27 @@ int	ft_printf(const char *format, ...)
 	return (len);
 }
 
-#include <stdio.h>
-
-int	main(void)
-{
-	int	len;
-
-	len = ft_printf("char: %c  ", 'A');
-	printf("len: %d\n", len);
-	len = ft_printf("str: %s  ", "hello");
-	printf("len: %d\n", len);
-	len = printf("ptr: %p  ", "hello");
-	printf("len: %d\n", len);
-	len = ft_printf("ptr: %p  ", "hello");
-	printf("len: %d\n", len);
-	len = ft_printf("int: %d %i  ", -42, 42);
-	printf("len: %d\n", len);
-	len = ft_printf("uint: %u  ", 4294967295U);
-	printf("len: %d\n", len);
-	len = ft_printf("hex: %x %X  ", 3735928559U, 3735928559U);
-	printf("len: %d\n", len);
-	len = ft_printf("percent: %%  ");
-	printf("len: %d\n", len);
-	return (0);
-}
+// #include <stdio.h>
+//
+// int	main(void)
+// {
+// 	int	len;
+//
+// 	len = ft_printf("char: %c  ", 'A');
+// 	printf("len: %d\n", len);
+// 	len = ft_printf("str: %s  ", "hello");
+// 	printf("len: %d\n", len);
+// 	len = printf("ptr: %p  ", "hello");
+// 	printf("len: %d\n", len);
+// 	len = ft_printf("ptr: %p  ", "hello");
+// 	printf("len: %d\n", len);
+// 	len = ft_printf("int: %d %i  ", -42, 42);
+// 	printf("len: %d\n", len);
+// 	len = ft_printf("uint: %u  ", 4294967295U);
+// 	printf("len: %d\n", len);
+// 	len = ft_printf("hex: %x %X  ", 3735928559U, 3735928559U);
+// 	printf("len: %d\n", len);
+// 	len = ft_printf("percent: %%  ");
+// 	printf("len: %d\n", len);
+// 	return (0);
+// }
