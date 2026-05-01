@@ -14,10 +14,11 @@
 
 int	ft_print_str(char *s)
 {
-	if (!s) {
-        write(1, "(null)", 6);
+	if (!s)
+	{
+		write(1, "(null)", 6);
 		return (6);
-    }
+	}
 	else
 	{
 		ft_putstr_fd(s, 1);
