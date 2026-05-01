@@ -6,22 +6,29 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 00:58:13 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/01 12:59:41 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/01 15:17:57 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 
-int	ft_print_ptr(unsigned long p)
+int	ft_print_ptr(void *p)
 {
-	char	buf[16];
-	char	*pos;
+	char			buf[16];
+	char			*pos;
+	unsigned long	addr;
 
-	pos = &buf[16];
-	while (p)
+	if (p == 0)
 	{
-		*(--pos) = "0123456789ABCDEF"[p % 16];
-		p /= 16;
+		write(1, "(nil)", 5);
+		return (5);
+	}
+	addr = (unsigned long)p;
+	pos = &buf[16];
+	while (addr)
+	{
+		*(--pos) = "0123456789abcdef"[addr % 16];
+		addr /= 16;
 	}
 	write(1, "0x", 2);
 	write(1, pos, &buf[16] - pos);
