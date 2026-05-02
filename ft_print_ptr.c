@@ -6,7 +6,7 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 00:58:13 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/02 14:37:38 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/02 19:56:38 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,20 @@
 
 int	ft_print_ptr(void *p)
 {
-	char			buf[16];
+	char			buf[18];
 	char			*pos;
 	unsigned long	addr;
-	int				ret;
 
-	if (p == 0)
+	if (!p)
 		return (write(1, "(nil)", 5));
 	addr = (unsigned long)p;
-	pos = &buf[16];
+	pos = &buf[18];
 	while (addr)
 	{
 		*(--pos) = "0123456789abcdef"[addr % 16];
 		addr /= 16;
 	}
-	ret = write(1, "0x", 2);
-	ret += write(1, pos, &buf[16] - pos);
-	return (ret);
+	*--pos = 'x';
+	*--pos = '0';
+	return (write(1, pos, &buf[18] - pos));
 }
