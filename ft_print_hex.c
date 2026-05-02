@@ -6,11 +6,11 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 00:56:25 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/01 12:59:24 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/02 14:37:47 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+#include "ft_printf.h"
 
 int	ft_print_hex(unsigned int n, const char *base)
 {
@@ -25,6 +25,5 @@ int	ft_print_hex(unsigned int n, const char *base)
 		*(--pos) = base[n % 16];
 		n /= 16;
 	}
-	write(1, pos, &buf[8] - pos);
-	return (&buf[8] - pos);
+	return (write(1, pos, &buf[8] - pos));
 }

@@ -6,15 +6,16 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:47:04 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/01 15:03:39 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/02 14:30:07 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft/libft.h"
 # include <stdarg.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 int	ft_print_char(char c);
 int	ft_print_str(char *s);

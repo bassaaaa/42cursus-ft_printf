@@ -6,14 +6,13 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 00:59:37 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/01 12:59:13 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/02 14:37:51 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+#include "ft_printf.h"
 
 int	ft_print_char(char c)
 {
-	ft_putchar_fd(c, 1);
-	return (1);
+	return (write(1, &c, 1));
 }

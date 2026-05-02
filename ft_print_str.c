@@ -6,22 +6,23 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 00:59:05 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/01 15:33:04 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/02 14:36:44 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+#include "ft_printf.h"
 
 int	ft_print_str(char *s)
 {
+	int	len;
+
+	len = 0;
 	if (!s)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
+		return (write(1, "(null)", 6));
 	else
 	{
-		ft_putstr_fd(s, 1);
-		return (ft_strlen(s));
+		while (s[len])
+			len++;
+		return (write(1, s, len));
 	}
 }

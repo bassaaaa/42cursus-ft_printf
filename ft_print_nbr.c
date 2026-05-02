@@ -6,11 +6,11 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 00:57:32 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/01 12:59:34 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/02 14:37:42 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+#include "ft_printf.h"
 
 int	ft_print_nbr(int n)
 {
@@ -32,6 +32,5 @@ int	ft_print_nbr(int n)
 	}
 	if (n < 0)
 		*(--pos) = '-';
-	write(1, pos, &buf[11] - pos);
-	return (&buf[11] - pos);
+	return (write(1, pos, &buf[11] - pos));
 }
