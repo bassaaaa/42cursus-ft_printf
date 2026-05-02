@@ -145,7 +145,7 @@ The main data structures are as follows:
 - `va_list` stores the current position in the variadic argument list.
 - The input `const char *format` acts as the parsing stream.
 - Small helper functions handle each conversion independently.
-- Integer conversion helpers use recursive printing or a small fixed local
+- Integer conversion helpers use a small fixed local
   buffer to emit digits in the correct order.
 - Hexadecimal conversion uses constant digit strings:
   `"0123456789abcdef"` and `"0123456789ABCDEF"`.
@@ -156,7 +156,7 @@ Classic references used for this topic:
 
 - `man printf`
 - `man stdarg`
-- The C standard library documentation for `printf` formatting rules
+- [printf command](https://www.ibm.com/docs/ja/aix/7.2.0?topic=p-printf-command) - A documentation of `printf`
 - [Tripouille/printfTester](https://github.com/Tripouille/printfTester) - test tool
 
 AI usage:
@@ -305,7 +305,7 @@ cc -Wall -Wextra -Werror main.c libftprintf.a
 - `va_list` は可変長引数リストの現在位置を保持する。
 - 入力の `const char *format` は解析対象のストリームとして扱う。
 - 変換指定子ごとに小さなヘルパー関数を用意する。
-- 整数変換では、再帰出力または固定長のローカルバッファを使って正しい順序で数字を出力する。
+- 整数変換では、固定長のローカルバッファを使って正しい順序で数字を出力する。
 - 16 進数変換では `"0123456789abcdef"` と `"0123456789ABCDEF"` の定数文字列を使う。
 
 ### 参考資料
@@ -314,7 +314,7 @@ cc -Wall -Wextra -Werror main.c libftprintf.a
 
 - `man printf`
 - `man stdarg`
-- `printf` のフォーマット規則に関する C 標準ライブラリのドキュメント
+- [printf コマンド](https://www.ibm.com/docs/ja/aix/7.2.0?topic=p-printf-command) - `printf` に関するドキュメント
 - [Tripouille/printfTester](https://github.com/Tripouille/printfTester) - テストツール
 
 AI の使用について:
