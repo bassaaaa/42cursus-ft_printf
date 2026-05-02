@@ -18,13 +18,6 @@ of characters printed. Its behavior is compared against the original libc
 `printf()` for the required conversions, but it does not implement the original
 `printf()` buffer management.
 
-This project focuses on:
-
-- parsing a format string,
-- using variadic arguments with `stdarg.h`,
-- converting integers and pointers to textual representations,
-- writing reusable C code that follows the 42 Norm.
-
 ### Mandatory Requirements
 
 The library must support the following conversions:
@@ -190,13 +183,6 @@ int	ft_printf(const char *format, ...);
 この関数は、整形した文字列を標準出力へ書き込み、出力した文字数を返す。
 必須変換については libc の `printf()` と比較されるが、元の `printf()` が持つ
 バッファ管理までは実装しない。
-
-この課題では主に次の内容を学ぶ。
-
-- フォーマット文字列の解析
-- `stdarg.h` を使った可変長引数の扱い
-- 整数やポインタの文字列表現への変換
-- 42 Norm に従った再利用しやすい C コードの設計
 
 ### 必須要件
 
