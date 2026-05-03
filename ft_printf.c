@@ -6,13 +6,13 @@
 /*   By: tsito <tsito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 16:59:12 by tsito             #+#    #+#             */
-/*   Updated: 2026/05/02 19:45:40 by tsito            ###   ########.fr       */
+/*   Updated: 2026/05/03 16:12:13 by tsito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	print_format(va_list *args, const char c)
+static int	print_specifier(va_list *args, const char c)
 {
 	int	len;
 
@@ -40,7 +40,7 @@ static int	print_format(va_list *args, const char c)
 	return (len);
 }
 
-static int	process_format(va_list *args, const char *format)
+static int	print_format(va_list *args, const char *format)
 {
 	int	i;
 	int	len;
@@ -53,7 +53,7 @@ static int	process_format(va_list *args, const char *format)
 	{
 		if (format[i] == '%')
 		{
-			len = print_format(args, format[i + 1]);
+			len = print_specifier(args, format[i + 1]);
             if (format[i + 1])
 		    	i += 2;
             else
@@ -77,7 +77,7 @@ int	ft_printf(const char *format, ...)
 	if (!format)
 		return (-1);
 	va_start(args, format);
-	ret = process_format(&args, format);
+	ret = print_format(&args, format);
 	va_end(args);
 	return (ret);
 }
