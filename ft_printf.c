@@ -33,8 +33,8 @@ static int	print_specifier(va_list *args, const char c)
 		len = ft_print_hex(va_arg(*args, unsigned int), "0123456789ABCDEF");
 	else if (c == '%')
 		len = ft_print_char('%');
-    else if (c == '\0')
-        len = -1;
+	else if (c == '\0')
+		len = -1;
 	else
 		len = ft_print_char(c);
 	return (len);
@@ -54,10 +54,10 @@ static int	print_format(va_list *args, const char *format)
 		if (format[i] == '%')
 		{
 			len = print_specifier(args, format[i + 1]);
-            if (format[i + 1])
-		    	i += 2;
-            else
-                i++;
+			if (format[i + 1])
+				i += 2;
+			else
+				i++;
 		}
 		else
 			len = ft_print_char(format[i++]);
